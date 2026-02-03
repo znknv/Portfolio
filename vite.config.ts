@@ -8,23 +8,18 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
+  preview: {
+    port: 4173,
+    host: true,
+    open: '/Portfolio/'
+  },
   build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    emptyOutDir: true,
     rollupOptions: {
-      onwarn(warning, warn) {
-        if (
-          warning.message.includes('Module level directives') ||
-          warning.message.includes('"use client"')  ||
-          warning.message.includes('"was ignored"')
-        ) {
-          return; 
-        }
-        if (warning.code === 'UNRESOLVED_IMPORT') {
-          throw new Error(`Build failed due to unresolved import:\n${warning.message}`);
-        }
-        if (warning.code === 'PLUGIN_WARNING' && /is not exported/.test(warning.message)) {
-          throw new Error(`Build failed due to missing export:\n${warning.message}`);
-        }
-        warn(warning);
+      input: {
+        main: './index.html',
       },
     },
   },
