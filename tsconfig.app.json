@@ -1,0 +1,7 @@
+cat > tsconfig.app.json << 'EOF'
+{
+  "extends": "./tsconfig.json",
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
+EOF
